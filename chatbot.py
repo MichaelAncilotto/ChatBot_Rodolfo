@@ -3,47 +3,59 @@ print(f"{nome_bot}: Olá! eu sou o {nome_bot}! Como eu posso te auxiliar hoje?")
 
 
 def iniciar_quiz():  # função pra começar o quiz
-    pontuação = 0
+    perguntas = (f"{nome_bot}: Aonde meu criador mora? ",
+                 f"{nome_bot}: Qual é o anime favorito do meu criador? ",
+                 f"{nome_bot}: Qual é o nome do irmão do meu criador? ",
+                 f"{nome_bot}: Qual é o sonho do meu criador? ",
+                 f"{nome_bot}: Qual é o número mais aura?")
 
-    # pergunta_1
-    print(f"{nome_bot}: Onde meu criador mora?")
-    usuario_resposta1: str = input("Você: ").lower()
-    if usuario_resposta1 in ["Vilhena", "vilhena"]:
-        print(f"{nome_bot}: Você acertou!")
-        pontuação += 1
-    else:
-        print(f"{nome_bot}: Você errou..")
+    opções = (("A. Vilhena", "B. Acre", "C. São Paulo", "D. Rio de Janeiro"),
+              ("A. Jojo", "B. Jujutsu Kaisen", "C. Dragon Ball", "D. Demon Slayer"),
+              ("A. Ronaldo", "B. Alberto", "C. Guilherme", "D. Matheus"),
+              ("A. Trabalhar no tribunal", "B. Ser peão de gringo",
+               "C. Farmar aura", "D. Comer muito bolo"),
+              ("A. 123", "B. 61", "C. 67", "D. 0"))
 
-    # pergunta 2
-    print(f"{nome_bot}: Próxima pergunta, qual é o nome do cara mais lindo do mundo?")
-    usuario_resposta2: str = input("Você: ").lower()
-    if usuario_resposta2 in ["Miguel", "miguel", "damonrius"]:
-        print(f"{nome_bot}: Você acertou! boa mlk")
-        pontuação += 1
-    else:
-        print(f"{nome_bot}: Errou burro")
+    alternativas_corretas = ("A", "B", "D", "A", "C")
+    chutes = []
+    pontuacao = 0
+    pergunta_atual = 0
 
-    # pergunta 3
-    print(f"{nome_bot}: Agora a última pergunta.. qual é o anime favorito do meu criador?")
-    usuario_resposta3: str = input("Você: ").lower()
-    if usuario_resposta3 in ["Jujutsu", "jujutsu", "jujutsu kaisen", "Jujutsu Kaisen"]:
-        print(f"{nome_bot}: Acertou seu danado!")
-        pontuação += 1
-    else:
-        print(f"{nome_bot}: Errou animal")
+    for pergunta in perguntas:
+        print("-----------------------")
+        print(pergunta)
+        for opção in opções[pergunta_atual]:
+            print(opção)
 
-    if pontuação == 3:  # quantos pontos você fez
-        print(
-            f"{nome_bot}: Parabéns! você terminou o quiz com {pontuação} pontos! seu GÊNIO!")
-    elif pontuação == 2:
-        print(
-            f"{nome_bot}: Nada mal! você terminou o quiz com {pontuação} pontos! seu safado")
-    elif pontuação == 1:
-        print(
-            f"{nome_bot}: Você terminou o quiz com apenas {pontuação} ponto.. foi bem ruim")
-    elif pontuação == 0:
-        print(
-            f"{nome_bot}: Você é muito burro, tu terminou o quiz com {pontuação} pontos.. jamanta")
+        chute: str = input(
+            "Escolha sua alternativa: (A, B, C, D)").upper()
+        chutes.append(chute)
+        if chute == alternativas_corretas[pergunta_atual]:
+            pontuacao += 1
+            print(f"{nome_bot}: Você acertou!")
+        else:
+            print(f"{nome_bot}: Você errou..")
+            print(
+                f"{nome_bot}: A resposta correta era a alternativa: {alternativas_corretas[pergunta_atual]} ")
+
+        pergunta_atual += 1
+
+    print("-----------------------")
+    print("     RESULTADOS:       ")
+    print("-----------------------")
+
+    print("Alternativas: ", end="")
+    for alternativa in alternativas_corretas:
+        print(alternativa, end=" ")
+    print()
+
+    print("Chutes: ", end="")
+    for chute in chutes:
+        print(chute, end=" ")
+    print()
+
+    pontuacao = int(pontuacao / len(perguntas) * 100)
+    print(f"{nome_bot}: Sua pontuação foi de: {pontuacao}%")
 
 
 while True:  # loop de dialogo com o chatbot/interações
