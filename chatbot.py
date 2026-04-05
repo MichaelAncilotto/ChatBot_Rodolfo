@@ -2,6 +2,36 @@ nome_bot: str = "Rodolfo"  # introdução do bot
 print(f"{nome_bot}: Olá! eu sou o {nome_bot}! Como eu posso te auxiliar hoje?")
 
 
+def calculo():  # função para começar a calculadora
+    print(
+        f"{nome_bot}: Qual operação você deseja efetuar?(+, -, /, *, %)")
+    try:
+        operacao = input("Você: ")
+        if operacao not in ["+", "-", "*", "/", "%"]:
+            print(f"{nome_bot}: Esse operador não existe!")
+        else:
+            print(f"{nome_bot}: Insira o primeiro número:")
+            num1 = float(input("Você: "))
+            print(f"{nome_bot}: Insira o segundo número:")
+            num2 = float(input("Você: "))
+            if operacao == "+":
+                resultado = num1 + num2
+            elif operacao == "-":
+                resultado = num1 - num2
+            elif operacao == "*":
+                resultado = num1 * num2
+            elif operacao == "/":
+                resultado = num1 / num2
+            elif operacao == "%":
+                resultado == num1 % num2
+            print(
+                f"{nome_bot}: O resultado deste cálculo é igual a: {resultado}! ")
+
+    except ValueError:
+        print(
+            f"{nome_bot}: Eita! parece que algo deu errado, por favor tente novamente!")
+
+
 def iniciar_quiz():  # função pra começar o quiz
     perguntas = (f"{nome_bot}: Aonde meu criador mora? ",
                  f"{nome_bot}: Qual é o anime favorito do meu criador? ",
@@ -74,31 +104,8 @@ while True:  # loop de dialogo com o chatbot/interações
 
     elif usuario_input in ["somar", "calculadora", "calcular", "calculo"]:  # calculadora
         print(
-            f"{nome_bot}: Beleza! vamos começar a calcular, qual operação você deseja efetuar?(+, -, /, *, %)")
-        try:
-            operacao = input("Você: ")
-            if operacao not in ["+", "-", "*", "/", "%"]:
-                print(f"{nome_bot}: Esse operador não existe!")
-            else:
-                print(f"{nome_bot}: Insira o primeiro número:")
-                num1 = float(input("Você: "))
-                print(f"{nome_bot}: Insira o segundo número:")
-                num2 = float(input("Você: "))
-                if operacao == "+":
-                    resultado = num1 + num2
-                elif operacao == "-":
-                    resultado = num1 - num2
-                elif operacao == "*":
-                    resultado = num1 * num2
-                elif operacao == "/":
-                    resultado = num1 / num2
-                elif operacao == "%":
-                    resultado == num1 % num2
-                print(
-                    f"{nome_bot}: O resultado deste cálculo é igual a: {resultado}! ")
+            f"{nome_bot}: Beleza! vamos começar a calcular!")
+        calculo()
 
-        except ValueError:
-            print(
-                f"{nome_bot}: Eita! parece que algo deu errado, por favor tente novamente!")
     else:
         print(f"{nome_bot}: Eu não entendi.. por favor tente novamente.")
