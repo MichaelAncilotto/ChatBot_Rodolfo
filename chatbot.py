@@ -3,14 +3,14 @@ nome_bot: str = "Rodolfo"  # introdução do bot
 print(f"{nome_bot}: Olá! eu sou o {nome_bot}! Como eu posso te auxiliar hoje?")
 
 
-def pedra_papel_tesoura():
+def pedra_papel_tesoura():  # função pedra papel tesoura
     opcoes = ("pedra", "papel", "tesoura")
     jogador = None
     bot = random.choice(opcoes)
 
     while jogador not in opcoes:
         jogador = input(
-            f"{nome_bot}: Escolha o que você quer jogar! (pedra, papel, tesoura)")
+            f"{nome_bot}: Escolha o que você quer jogar! (pedra, papel, tesoura): ")
 
     print(f"Você: {jogador}")
     print(f"Rodolfo: {bot}")
@@ -123,7 +123,7 @@ while True:  # loop de dialogo com o chatbot/interações
 
     elif usuario_input in ["pedra papel tesoura", "pedra", "papel", "tesoura"]:
         print(
-            f"{nome_bot}: Você quer jogar pedra papel tesoura?? que legal, vamos nessa!")
+            f"{nome_bot}: Você quer jogar pedra papel tesoura? que legal, vamos nessa!")
         pedra_papel_tesoura()
 
     elif usuario_input in ["tchau", "adeus", "até outro dia", "até", "flw"]:
