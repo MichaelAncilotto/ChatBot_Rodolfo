@@ -1,4 +1,5 @@
 import random
+
 nome_bot: str = "Rodolfo"  # introdução do bot
 print(f"{nome_bot}: Olá! eu sou o {nome_bot}! Como eu posso te auxiliar hoje?")
 
@@ -115,29 +116,34 @@ def iniciar_quiz():  # função pra começar o quiz
     print(f"{nome_bot}: Sua pontuação foi de: {pontuacao}%")
 
 
-while True:  # loop de dialogo com o chatbot/interações
-    usuario_input: str = input("Você: ").lower()
+def main():
+    while True:  # loop de dialogo com o chatbot/interações
+        usuario_input: str = input("Você: ").lower()
 
-    if usuario_input in ["oi", "olá", "eae", "oie", "opa"]:
-        print(f"{nome_bot}: Oi! como eu posso te ajudar?")
+        if usuario_input in ["oi", "olá", "eae", "oie", "opa"]:
+            print(f"{nome_bot}: Oi! como eu posso te ajudar?")
 
-    elif usuario_input in ["pedra papel tesoura", "pedra", "papel", "tesoura"]:
-        print(
-            f"{nome_bot}: Você quer jogar pedra papel tesoura? que legal, vamos nessa!")
-        pedra_papel_tesoura()
+        elif usuario_input in ["pedra papel tesoura", "pedra", "papel", "tesoura"]:
+            print(
+                f"{nome_bot}: Você quer jogar pedra papel tesoura? que legal, vamos nessa!")
+            pedra_papel_tesoura()
 
-    elif usuario_input in ["tchau", "adeus", "até outro dia", "até", "flw"]:
-        print(f"{nome_bot}: Até logo!")
-        break
+        elif usuario_input in ["tchau", "adeus", "até outro dia", "até", "flw"]:
+            print(f"{nome_bot}: Até logo!")
+            break
 
-    elif usuario_input in ["quiz", "Quiz", "jogar", "jogo"]:
-        print(f"{nome_bot}: Perfeito! vamos jogar um quiz!")
-        iniciar_quiz()
+        elif usuario_input in ["quiz", "Quiz", "jogar", "jogo"]:
+            print(f"{nome_bot}: Perfeito! vamos jogar um quiz!")
+            iniciar_quiz()
 
-    elif usuario_input in ["somar", "calculadora", "calcular", "calculo"]:  # calculadora
-        print(
-            f"{nome_bot}: Beleza! vamos começar a calcular!")
-        calculo()
+        elif usuario_input in ["somar", "calculadora", "calcular", "calculo"]:  # calculadora
+            print(
+                f"{nome_bot}: Beleza! vamos começar a calcular!")
+            calculo()
 
-    else:
-        print(f"{nome_bot}: Eu não entendi.. por favor tente novamente.")
+        else:
+            print(f"{nome_bot}: Eu não entendi.. por favor tente novamente.")
+
+
+if __name__ == "__main__":
+    main()
