@@ -4,6 +4,75 @@ nome_bot: str = "Rodolfo"  # introdução do bot
 print(f"{nome_bot}: Olá! eu sou o {nome_bot}! Como eu posso te auxiliar hoje?")
 
 
+def jogo_da_forca():
+    palavras = ("cs2", "valorant", "leagueoflegends",
+                "roblox", "pokemon", "xadrez", "mortal kombat")
+
+    arte_jogo_da_forca = {
+        0: ("         ", "         ", "         "),
+        1: ("   O     ", "         ", "         "),
+        2: ("   O     ", "   |     ", "         "),
+        3: ("   O     ", "  /|     ", "         "),
+        4: ("   O     ", "  /|\\   ", "         "),
+        5: ("   O     ", "  /|\\   ", "  /      "),
+        6: ("   O     ", "  /|\\   ", "  / \\    ")
+    }
+
+    resposta = random.choice(palavras)
+    dica = ["_"] * len(resposta)
+    chutes = 0
+    letras_chutadas = set()
+    rodando = True
+
+    def mostrar_arte():
+        print("\n*******************")
+        for linha in arte_jogo_da_forca[chutes]:
+            print(linha)
+        print("\n*******************")
+
+    def mostrar_dica():
+        print(" ".join(dica))
+
+    while rodando:
+        mostrar_arte()
+        mostrar_dica()
+
+        print("----------------------------------")
+        chute = input("Digite uma letra: ").lower()
+        print("----------------------------------")
+
+        if len(chute) != 1 or not chute.isalpha():
+            print(f"{nome_bot}: Digite apenas UMA letra.")
+            continue
+
+        if chute in letras_chutadas:
+            print(f"{nome_bot}: Você já tentou essa letra.")
+            continue
+
+        letras_chutadas.add(chute)
+
+        if chute in resposta:
+            for i in range(len(resposta)):
+                if resposta[i] == chute:
+                    dica[i] = chute   # ← corrigido aqui
+        else:
+            chutes += 1
+
+        # vitória
+        if "_" not in dica:
+            mostrar_arte()
+            print("A palavra era:", resposta)
+            print(f"{nome_bot}: Você ganhou!")
+            rodando = False
+
+        # derrota
+        elif chutes >= len(arte_jogo_da_forca) - 1:
+            mostrar_arte()
+            print("A palavra era:", resposta)
+            print(f"{nome_bot}: PERDEU BURRO!")
+            rodando = False
+
+
 def pedra_papel_tesoura():  # função pedra papel tesoura
     opcoes = ("pedra", "papel", "tesoura")
     jogador = None
@@ -131,6 +200,11 @@ def main():
         elif usuario_input in ["tchau", "adeus", "até outro dia", "até", "flw"]:
             print(f"{nome_bot}: Até logo!")
             break
+
+        elif usuario_input in ["jogo da forca", "forca", "jogo forca", "vamo jogar forca", "jogar forca"]:
+            print(
+                f"{nome_bot}: Legal! vamos jogar o jogo da forca, o tema vai ser sobre jogos!")
+            jogo_da_forca()
 
         elif usuario_input in ["quiz", "Quiz", "jogar", "jogo"]:
             print(f"{nome_bot}: Perfeito! vamos jogar um quiz!")
